@@ -1,0 +1,446 @@
+1) Help / Discover commands (Ubuntu)
+man / --help
+
+Read manual / help.
+
+man grep
+grep --help
+
+apropos
+
+Search man pages by keyword.
+
+apropos "copy file"
+
+which / type
+
+Find where a command is coming from.
+
+which python3
+type ls
+
+whereis
+
+Find binary + man page locations.
+
+whereis nginx
+
+2) Files & Directories
+pwd
+
+Print current directory.
+
+pwd
+
+ls
+
+List files.
+
+ls
+ls -l
+ls -la
+ls -lh
+ls -lt
+
+cd
+
+Change directory.
+
+cd /etc
+cd ..
+cd ~
+cd -     # go back
+
+mkdir
+
+Create directory.
+
+mkdir test
+mkdir -p a/b/c
+
+rmdir
+
+Remove empty directory.
+
+rmdir emptydir
+
+touch
+
+Create empty file / update timestamp.
+
+touch a.txt
+
+cp
+
+Copy files/folders.
+
+cp a.txt b.txt
+cp -r dir1 dir2
+cp -i a.txt b.txt   # ask before overwrite
+
+mv
+
+Move / rename.
+
+mv a.txt b.txt
+mv *.log logs/
+
+rm
+
+Delete file/folder.
+
+rm a.txt
+rm -r folder/
+rm -f a.txt
+rm -rf folder/      # dangerous if wrong path
+
+ln (links)
+
+Hard link / symbolic link.
+
+ln a.txt a_hardlink
+ln -s /var/log/syslog syslog_link
+
+file
+
+Detect file type.
+
+file script.sh
+
+stat
+
+Detailed file info.
+
+stat a.txt
+
+3) View & Read Files
+cat
+
+Print file content.
+
+cat a.txt
+
+less (best viewer)
+
+Scroll big files safely.
+
+less /var/log/syslog
+
+head / tail
+
+Top/bottom lines.
+
+head -n 20 a.txt
+tail -n 50 a.txt
+tail -f app.log      # live logs
+
+nl
+
+Show with line numbers.
+
+nl a.txt
+
+wc
+
+Count lines/words/bytes.
+
+wc a.txt
+wc -l a.txt
+
+4) Search (very important)
+grep
+
+Search text.
+
+grep "error" app.log
+grep -i "error" app.log
+grep -n "error" app.log
+grep -r "password" .
+grep -v "INFO" app.log
+
+find
+
+Find files by rule (real filesystem search).
+
+find . -name "*.log"
+find /var/log -type f -size +50M
+find . -type f -mtime -7
+
+locate (fast)
+
+Search using database (need updatedb sometimes).
+
+locate nginx.conf
+sudo updatedb
+
+5) Text Processing (DevOps logs)
+sort
+sort names.txt
+sort -n numbers.txt
+
+uniq
+
+Works best after sort.
+
+sort list.txt | uniq
+sort list.txt | uniq -c
+
+cut
+
+Cut columns.
+
+cut -d: -f1 /etc/passwd
+
+tr
+
+Replace characters.
+
+echo "a,b,c" | tr ',' ' '
+
+sed
+
+Search/replace stream editor.
+
+sed 's/dev/prod/g' file.txt
+sed -n '1,20p' file.txt
+
+awk
+
+Field-based processing.
+
+awk '{print $1}' file.txt
+awk -F: '{print $1,$3}' /etc/passwd
+
+xargs
+
+Turn input into arguments.
+
+cat files.txt | xargs rm -f
+
+6) Redirection & Pipes (must know)
+> overwrite, >> append, | pipe
+echo "hello" > a.txt
+echo "again" >> a.txt
+cat a.txt | grep hello
+
+tee (show + save)
+echo "log line" | tee -a output.log
+
+7) Permissions & Ownership
+chmod
+
+Change permissions.
+
+chmod 644 file.txt     # rw-r--r--
+chmod 755 script.sh    # rwxr-xr-x
+chmod +x script.sh
+
+chown / chgrp
+
+Change owner/group.
+
+sudo chown arfat:arfat file.txt
+sudo chgrp docker file.txt
+
+umask
+
+Default permission mask.
+
+umask
+
+8) Users & Groups
+whoami / id
+whoami
+id
+
+users / w / who
+users
+w
+who
+
+adduser / useradd
+sudo adduser devops
+sudo useradd -m devops
+
+passwd
+sudo passwd devops
+
+groups / usermod
+groups
+sudo usermod -aG sudo devops
+sudo usermod -aG docker devops
+
+sudo / su
+sudo -i
+su -
+
+9) Processes & CPU/RAM
+ps
+ps
+ps aux
+ps aux | grep nginx
+
+top / htop
+top
+htop
+
+kill / pkill / killall
+kill 1234
+pkill nginx
+killall nginx
+
+nice / renice
+nice -n 10 python3 app.py
+sudo renice -n 5 -p 1234
+
+uptime
+uptime
+
+free
+free -h
+
+10) Disk & Storage
+df
+
+Free disk space.
+
+df -h
+
+du
+
+Folder sizes.
+
+du -sh *
+du -sh /var/log
+
+lsblk
+
+Disks/partitions.
+
+lsblk
+
+mount / umount
+mount
+sudo mount /dev/sdb1 /mnt
+sudo umount /mnt
+
+11) Networking (Ubuntu DevOps)
+ip
+ip a
+ip r
+
+ping
+ping google.com
+
+curl
+curl https://example.com
+curl -I https://google.com
+curl -o page.html https://example.com
+
+wget
+wget https://example.com/file.zip
+wget -c https://example.com/big.iso
+
+dig / nslookup
+dig google.com
+nslookup google.com
+dig -x 8.8.8.8
+
+ss (ports)
+ss -tulnp
+
+lsof (who uses port)
+sudo lsof -i :80
+
+traceroute
+traceroute google.com
+
+ssh / scp / rsync
+ssh ubuntu@1.2.3.4
+scp a.txt ubuntu@1.2.3.4:/home/ubuntu/
+rsync -avz folder/ ubuntu@1.2.3.4:/home/ubuntu/folder/
+
+12) System Info
+date
+date
+
+uname
+uname -a
+
+/proc info
+cat /proc/cpuinfo
+cat /proc/meminfo
+
+13) Services & Logs (systemd)
+systemctl
+systemctl status nginx
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+
+journalctl
+journalctl -u nginx --no-pager
+journalctl -xe
+journalctl -f
+
+14) Archives & Compression
+tar
+tar -cf backup.tar folder/
+tar -tf backup.tar
+tar -xf backup.tar
+tar -czf backup.tar.gz folder/
+tar -xzf backup.tar.gz
+
+zip / unzip
+zip -r code.zip project/
+unzip code.zip
+
+gzip / gunzip
+gzip file.log
+gunzip file.log.gz
+
+15) Package Management (Ubuntu)
+apt
+sudo apt update
+sudo apt install nginx
+sudo apt remove nginx
+sudo apt purge nginx
+sudo apt autoremove
+
+dpkg
+dpkg -l | grep nginx
+
+16) Environment & Shell
+echo
+echo "hello"
+echo $PATH
+
+export
+export APP_ENV=prod
+
+env / printenv
+env
+printenv PATH
+
+history
+history
+history | tail
+
+alias
+alias ll='ls -la'
+
+Real DevOps “must practice” commands (10 mini tasks)
+
+Try these in Ubuntu:
+
+du -sh * | sort -h
+df -h
+ss -tulnp
+sudo lsof -i :22
+grep -r "error" /var/log | head
+find /var/log -type f -size +50M
+tail -f /var/log/syslog
+ps aux --sort=-%cpu | head
+ps aux --sort=-%mem | head
+journalctl -xe --no-pager | tail

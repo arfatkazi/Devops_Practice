@@ -1,0 +1,302 @@
+A) Help / Learning commands (must know)
+man, --help, help
+
+Read manual / usage.
+
+man ls
+ls --help
+help cd
+
+
+which, type
+
+Show where a command comes from.
+
+which python
+type ls
+
+B) Navigation & Files
+pwd
+pwd
+
+ls (list)
+ls
+ls -l
+ls -la
+ls -lh
+ls -lt
+
+cd
+cd /etc
+cd ..
+cd ~
+cd -
+
+tree (if installed)
+tree
+tree -L 2
+
+touch (create/update file)
+touch a.txt
+
+mkdir / rmdir
+mkdir project
+mkdir -p a/b/c
+rmdir empty_dir
+
+cp (copy)
+cp a.txt b.txt
+cp -r folder1 folder2
+cp -i a.txt b.txt     # ask before overwrite
+cp -v a.txt b.txt     # verbose
+
+mv (move/rename)
+mv a.txt new.txt
+mv *.log logs/
+
+rm (delete)
+rm a.txt
+rm -r folder/
+rm -f a.txt
+rm -rf folder/        # dangerous if wrong path
+
+ln (links)
+ln file1 hardlink1
+ln -s /var/log/syslog syslog_link
+
+file (detect file type)
+file app.sh
+
+stat (detailed file info)
+stat a.txt
+
+C) Viewing file content
+cat
+cat file.txt
+
+less (best viewer)
+less /var/log/syslog
+
+head / tail
+head -n 20 file.txt
+tail -n 50 file.txt
+tail -f app.log
+
+nl (show line numbers)
+nl file.txt
+
+wc (count lines/words/bytes)
+wc file.txt
+wc -l file.txt
+
+D) Search & Find
+grep
+grep "error" app.log
+grep -i "error" app.log
+grep -n "error" app.log
+grep -r "password" .
+grep -v "INFO" app.log
+
+find (real filesystem search)
+find . -name "*.log"
+find /var/log -type f -size +100M
+find . -type f -mtime -7
+
+locate (fast database search)
+locate nginx.conf
+sudo updatedb
+
+awk / sed (text processing)
+awk '{print $1}' file.txt
+sed 's/old/new/g' file.txt
+
+E) Permissions & Ownership
+chmod
+chmod 644 file.txt
+chmod 755 script.sh
+chmod +x script.sh
+
+chown / chgrp
+sudo chown arfat:arfat file.txt
+sudo chgrp docker file.txt
+
+umask (default permissions)
+umask
+
+F) Users & Groups (admin basics)
+whoami, id
+whoami
+id
+
+users, w, who
+users
+w
+who
+
+adduser / useradd
+sudo adduser devops
+sudo useradd -m devops
+
+passwd
+sudo passwd devops
+
+groups, usermod
+groups
+sudo usermod -aG sudo devops
+sudo usermod -aG docker devops
+
+su / sudo
+su -
+sudo -i
+
+G) Processes & Performance
+ps
+ps
+ps aux
+ps aux | grep nginx
+
+top / htop
+top
+htop
+
+kill, pkill, killall
+kill 1234
+pkill nginx
+killall nginx
+
+nice / renice (priority)
+nice -n 10 python app.py
+sudo renice -n 5 -p 1234
+
+uptime
+uptime
+
+H) Disk & Storage
+df (free space)
+df -h
+
+du (folder sizes)
+du -sh *
+du -sh /var/log
+
+lsblk (disks/partitions)
+lsblk
+
+mount / umount
+mount
+sudo mount /dev/sdb1 /mnt
+sudo umount /mnt
+
+I) Networking (DevOps must)
+ip
+ip a
+ip r
+
+ping
+ping google.com
+
+curl / wget
+curl -I https://google.com
+curl -o page.html https://example.com
+wget https://example.com/file.zip
+wget -c https://example.com/big.iso
+
+dig / nslookup
+dig google.com
+nslookup google.com
+
+ss (ports) (modern replacement for netstat)
+ss -tulnp
+
+lsof (which process uses a port)
+sudo lsof -i :80
+
+traceroute
+traceroute google.com
+
+ssh, scp, rsync
+ssh ubuntu@1.2.3.4
+scp file.txt ubuntu@1.2.3.4:/home/ubuntu/
+rsync -avz folder/ ubuntu@1.2.3.4:/home/ubuntu/folder/
+
+J) Archives & Compression
+tar
+tar -cf backup.tar folder/
+tar -tf backup.tar
+tar -xf backup.tar
+tar -czf backup.tar.gz folder/
+tar -xzf backup.tar.gz
+
+zip / unzip
+zip -r code.zip project/
+unzip code.zip
+
+gzip / gunzip
+gzip file.log
+gunzip file.log.gz
+
+K) Package Management (Ubuntu)
+apt
+sudo apt update
+sudo apt install nginx
+sudo apt remove nginx
+sudo apt purge nginx
+sudo apt autoremove
+
+dpkg
+dpkg -l | grep nginx
+
+L) Services & Logs (Systemd)
+systemctl
+systemctl status nginx
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+
+journalctl
+journalctl -u nginx --no-pager
+journalctl -xe
+journalctl -f
+
+M) Environment & Shell
+echo
+echo "hello"
+echo $PATH
+
+export (set env var)
+export APP_ENV=prod
+
+env, printenv
+env
+printenv PATH
+
+history
+history
+history | tail
+
+alias
+alias ll='ls -la'
+
+N) Redirection & Pipes (super important)
+>, >>, <, |
+echo "hello" > a.txt
+echo "more" >> a.txt
+cat a.txt | grep hello
+
+tee (see output + save)
+echo "hello" | tee out.txt
+
+O) Useful “Real DevOps” one-liners
+Largest folders
+du -sh * | sort -h
+
+Find which process uses port
+sudo lsof -i :8080
+
+Live logs
+tail -f /var/log/syslog
+
+Search errors in logs
+grep -i "error" /var/log/syslog | tail
+
