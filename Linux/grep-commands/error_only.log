@@ -1,0 +1,3 @@
+3:2026-01-31 10:00:05 ERROR api  user=sara action=pay ip=10.0.0.7 status=500 msg="db timeout"
+5:2026-01-31 10:00:09 ERROR web  user=ali action=view ip=10.0.0.8 status=404 path=/missing
+8:2026-01-31 10:00:15 ERROR api  user=arfat action=pay ip=10.0.0.5 status=503 msg="upstream down"

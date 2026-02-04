@@ -1,0 +1,43 @@
+1. Virtualization (Old Way)
+
+In VM:
+
+Hardware
+ └── Hypervisor
+      ├── Guest OS (Ubuntu)
+      │     └── App
+      ├── Guest OS (CentOS)
+      │     └── App
+
+
+❌ Problems:
+
+Each VM needs full OS (1–2 GB)
+
+Slow boot (minutes)
+
+High RAM/CPU usage
+
+Heavy maintenance
+
+
+
+2. Containerization (Docker Way)
+Hardware
+ └── Host OS
+      └── Docker Engine
+           ├── Container 1 → App
+           ├── Container 2 → App
+
+
+✅ Benefits:
+
+Share host kernel
+
+Size MBs not GBs
+
+Start in seconds
+
+Portable
+
+Same on dev → prod

@@ -1,0 +1,66 @@
+0) Your practice lab (must-do once)
+
+Create a folder like:
+
+docker-mastery/
+
+01-basics/
+
+02-images/
+
+03-volumes-networks/
+
+04-compose/
+
+05-node-postgres/
+
+06-python-redis/
+
+07-nginx-reverse-proxy/
+
+08-multi-stage/
+
+09-security/
+
+10-ci-cd-ready/
+
+You’ll build and run everything locally.
+
+1) Commands you must master (industry must-know)
+A) Core runtime (daily use)
+docker version
+docker info
+docker ps
+docker ps -a
+docker logs -f <container>
+docker exec -it <container> sh
+docker stop <container>
+docker rm <container>
+docker start <container>
+docker restart <container>
+
+B) Images (build + debug)
+docker images
+docker pull nginx:alpine
+docker build -t myapp:1.0 .
+docker tag myapp:1.0 yourname/myapp:1.0
+docker rmi myapp:1.0
+docker history myapp:1.0
+docker inspect myapp:1.0
+
+C) Cleanup (real-world must)
+docker system df
+docker system prune
+docker image prune
+docker container prune
+docker volume prune
+
+D) Networking (compose + microservices)
+docker network ls
+docker network create app-net
+docker network inspect app-net
+
+E) Volumes (data persistence)
+docker volume ls
+docker volume create pgdata
+docker volume inspect pgdata

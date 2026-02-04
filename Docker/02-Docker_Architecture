@@ -1,0 +1,36 @@
+A. Docker Engine
+
+Docker Engine = Brain
+
+Components:
+
+1.Docker CLI → what you type
+
+2.Docker Daemon → does real work
+
+3.containerd → manages containers
+
+4.runc → runs container process
+
+B. Flow Example
+
+When you run:
+
+docker run nginx
+
+
+What Happens:
+
+1.CLI sends request to Daemon
+
+2.Daemon checks image locally
+
+3.If not → pulls from Docker Hub
+
+4.containerd creates container
+
+5.runc starts process
+
+6.Network + filesystem attached
+
+

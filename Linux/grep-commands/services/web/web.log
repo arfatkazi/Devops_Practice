@@ -1,0 +1,8 @@
+2026-01-31 10:00:01 INFO  api  user=arfat action=login ip=10.0.0.5 status=200
+2026-01-31 10:00:03 WARN  api  user=rahul action=login ip=10.0.0.6 status=401
+2026-01-31 10:00:05 ERROR api  user=sara action=pay ip=10.0.0.7 status=500 msg="db timeout"
+2026-01-31 10:00:07 INFO  web  user=arfat action=view ip=10.0.0.5 status=200 path=/home
+2026-01-31 10:00:09 ERROR web  user=ali action=view ip=10.0.0.8 status=404 path=/missing
+2026-01-31 10:00:11 INFO  api  user=neha action=pay ip=10.0.0.9 status=200
+2026-01-31 10:00:13 WARN  web  user=rahul action=view ip=10.0.0.6 status=429 msg="rate limit"
+2026-01-31 10:00:15 ERROR api  user=arfat action=pay ip=10.0.0.5 status=503 msg="upstream down"

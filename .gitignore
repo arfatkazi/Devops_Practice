@@ -1,0 +1,4 @@
+
+# ignore nested git repos
+Docker/projects/chattingo/
+Docker/projects/two-tier-flask/

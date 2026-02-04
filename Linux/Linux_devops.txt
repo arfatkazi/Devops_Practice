@@ -1,0 +1,743 @@
+1) Basic file operations
+ls -lh file
+
+Show permissions/size/owner in human readable.
+
+ls -lh app.log
+
+touch file
+
+Create empty file / update timestamp.
+
+touch notes.txt
+
+cp file1 file2
+
+Copy file.
+
+cp a.txt b.txt
+
+cp file1 dir/
+
+Copy into a directory.
+
+cp a.txt backups/
+
+mv file dir/
+
+Move file to directory.
+
+mv a.txt backups/
+
+mv file1 file2
+
+Rename.
+
+mv old.txt new.txt
+
+rm file
+
+Delete file.
+
+rm temp.txt
+
+ls -lah
+
+List all + hidden + long.
+
+ls -lah
+
+mkdir data
+
+Create directory.
+
+mkdir data
+
+cp -r dir1 dir2
+
+Copy folder recursively.
+
+cp -r project project_backup
+
+rm -rf dir
+
+Force delete folder recursively (danger).
+
+rm -rf build/
+
+pwd
+
+Print current path.
+
+pwd
+
+stat file
+
+Detailed file metadata.
+
+stat app.log
+
+wc file
+
+Count lines/words/bytes.
+
+wc app.log
+
+file file
+
+Guess file type.
+
+file app.log
+
+type cd
+
+Show if command is built-in / alias / path.
+
+type cd
+
+2) Directory traversal
+cd or cd ~
+
+Go home.
+
+cd
+
+cd ..
+
+Go to parent directory.
+
+cd ..
+
+cd -
+
+Switch to previous directory.
+
+cd -
+
+cd /
+
+Go to root.
+
+cd /
+
+cd /tmp
+
+Go to /tmp.
+
+cd /tmp
+
+3) File viewing
+cat file.txt
+
+Print file.
+
+cat file.txt
+
+tac file.txt
+
+Reverse print (last line first).
+
+tac file.txt
+
+more file.txt
+
+View page-by-page.
+
+more file.txt
+
+less data.txt
+
+Better pager (search with /, quit q).
+
+less data.txt
+
+head -n 5 file
+
+First 5 lines.
+
+head -n 5 app.log
+
+tail -n 5 file
+
+Last 5 lines.
+
+tail -n 5 app.log
+
+nl file
+
+Line numbers.
+
+nl app.log
+
+strings file
+
+Show readable strings from binary.
+
+strings /bin/ls | head
+
+4) Print text
+echo "Hello World"
+echo "Hello World"
+
+printf "%5d\n" 42
+
+Formatted output.
+
+printf "%5d\n" 42
+
+yes "Hello World"
+
+Print repeatedly (stop Ctrl+C).
+
+yes "Hello World" | head
+
+seq 1 5
+
+Sequence.
+
+seq 1 5
+
+clear
+
+Clear terminal.
+
+clear
+
+5) File search
+locate file
+
+Fast search (needs updated database).
+
+locate nginx.conf
+
+which cd
+
+Show path of binary (for built-ins it may not show).
+
+which python
+
+whereis ls
+
+Binary + manpage locations.
+
+whereis ls
+
+find /data -name hello.txt
+
+Find by name.
+
+find . -name "*.log"
+
+6) Disk management
+df -h
+
+Disk free.
+
+df -h
+
+du -h /home
+
+Directory size.
+
+du -sh /home/$USER
+
+fdisk -l
+
+List partitions (needs sudo).
+
+sudo fdisk -l
+
+cfdisk
+
+Partition editor (danger if misused).
+
+sudo cfdisk
+
+lsblk
+
+List block devices.
+
+lsblk
+
+mount /dev/sda1 /mnt
+
+Mount partition.
+
+sudo mount /dev/sda1 /mnt
+
+umount /mnt
+
+Unmount.
+
+sudo umount /mnt
+
+findmnt
+
+Show mounted filesystems.
+
+findmnt
+
+fsck /dev/sda
+
+Check filesystem (very risky on mounted disks).
+
+sudo fsck /dev/sda1
+
+7) Secure Shell (SSH)
+ssh user@10.1.3.1
+
+Remote login.
+
+ssh ubuntu@10.1.3.1
+
+ssh-agent -t rsa
+
+Your image shows this, but normally you do:
+
+start agent:
+
+eval "$(ssh-agent -s)"
+
+
+generate key (RSA example):
+
+ssh-keygen -t rsa -b 4096
+
+ssh-copy-id
+
+Copy public key to server.
+
+ssh-copy-id ubuntu@10.1.3.1
+
+sshpass
+
+Password auth automation (avoid in real production).
+
+sshpass -p 'pass' ssh user@host
+
+8) File permissions
+chmod +x
+
+Make executable.
+
+chmod +x deploy.sh
+
+chmod u+s script.sh (SUID — risky)
+sudo chmod u+s some_binary
+
+chmod g+s dir (SGID on dir)
+chmod g+s shared/
+
+chmod +t dir (sticky bit)
+chmod +t /tmp
+
+chgrp devops file
+
+Change group.
+
+chgrp devops app.log
+
+chmod 644 script.sh
+
+Permissions numeric.
+
+chmod 644 config.env
+
+chown user:group file
+
+Change owner.
+
+sudo chown arfat:devops app.log
+
+umask 022
+
+Default permissions for new files.
+
+umask 022
+
+9) History tricks
+sudo !!
+
+Run previous command with sudo.
+
+sudo !!
+
+^cat^tac
+
+Replace text in previous command.
+
+^cat^tac
+
+history
+
+Show history.
+
+history | tail
+
+!$
+
+Last argument of previous command.
+
+mkdir test && cd !$
+
+!50
+
+Run history command #50.
+
+!50
+
+10) Process management
+ps
+
+Snapshot of processes (your session).
+
+ps
+
+ps aux
+
+All processes.
+
+ps aux | head
+
+top
+
+Live process view.
+
+top
+
+pgrep firefox
+
+Find PID by name.
+
+pgrep ssh
+
+pidof firefox
+
+PID of program.
+
+pidof bash
+
+kill 6732
+
+Kill by PID.
+
+kill 6732
+
+killall proc
+
+Kill all by name.
+
+killall nginx
+
+pkill firefox
+
+Kill by name pattern.
+
+pkill -f "python app.py"
+
+bg
+
+Resume stopped job in background.
+
+bg
+
+fg
+
+Bring job to foreground.
+
+fg
+
+jobs
+
+List jobs.
+
+jobs
+
+renice 12 PID
+
+Change priority.
+
+sudo renice 12 -p 6732
+
+pstree
+
+Process tree.
+
+pstree | head
+
+11) Networking
+ping sysxplore.com
+ping -c 4 google.com
+
+ip addr
+
+Show interfaces.
+
+ip addr
+
+ifconfig (older; use ip preferably)
+ifconfig
+
+whois sysxplore.com
+whois google.com
+
+route (older; use ip r)
+route -n
+
+ss
+
+Sockets/ports.
+
+ss -tulpn
+
+netstat (older; ss is better)
+netstat -tulpn
+
+dig sysxplore.com
+
+DNS query.
+
+dig google.com
+
+wget <url>
+
+Download.
+
+wget https://example.com/file.zip
+
+curl sysxplore.com
+
+Fetch URL.
+
+curl -I https://example.com
+
+12) Compression / archives
+tar -cf backup.tar /home
+
+Create tar.
+
+tar -cf backup.tar myfolder/
+
+tar -xf backup.tar
+
+Extract.
+
+tar -xf backup.tar
+
+tar -zcvf data.tar.gz /home
+
+Create gzip tar.
+
+tar -zcvf data.tar.gz myfolder/
+
+gunzip data.gz
+
+Uncompress gzip.
+
+gunzip file.txt.gz
+
+zip -r data
+
+Zip folder.
+
+zip -r data.zip myfolder/
+
+unzip data.zip
+unzip data.zip
+
+gzip data
+
+Compress (replaces original by default).
+
+gzip file.txt
+
+13) User management
+id
+
+User IDs/groups.
+
+id
+
+whoami
+
+Current username.
+
+whoami
+
+finger traw (may not be installed)
+finger $USER
+
+useradd -u 1002 traw (needs sudo)
+sudo useradd -u 1002 testuser
+
+userdel traw
+sudo userdel testuser
+
+chfn traw
+
+Change user info.
+
+sudo chfn testuser
+
+usermod -aG sudo traw
+
+Add user to sudo group.
+
+sudo usermod -aG sudo testuser
+
+gpasswd -a traw sudo
+
+Add to group.
+
+sudo gpasswd -a testuser sudo
+
+gpasswd -d traw sudo
+
+Remove from group.
+
+sudo gpasswd -d testuser sudo
+
+passwd / passwd traw
+
+Change password.
+
+passwd
+sudo passwd testuser
+
+chsh -s /bin/zsh
+
+Change shell.
+
+chsh -s /bin/bash
+
+su james
+
+Switch user.
+
+su - root
+
+14) Access Control Lists (ACL)
+getfacl file
+
+View ACL.
+
+getfacl app.log
+
+setfacl -m u:traw:r-x file
+
+Give user permissions.
+
+setfacl -m u:testuser:r-- app.log
+
+setfacl -m g:sysops:rw file
+
+Give group permissions.
+
+setfacl -m g:devops:rw app.log
+
+setfacl -x u:traw file
+
+Remove ACL entry.
+
+setfacl -x u:testuser app.log
+
+setfacl -x g:devops file
+setfacl -x g:devops app.log
+
+setfacl -b file
+
+Remove all ACL entries (keep base perms).
+
+setfacl -b app.log
+
+15) File transfer
+scp file.txt user@host:/remote/dir
+scp app.log ubuntu@10.1.3.1:/tmp/
+
+rsync -a /ubuntu/backup/ <dest>
+rsync -a ./project/ ./project_backup/
+
+rsync -a /var/www/web/ user@host:/data/backup/
+rsync -a ./project/ ubuntu@10.1.3.1:/tmp/project_backup/
+
+16) Text manipulation
+grep "linux" file.txt
+grep "ERROR" app.log
+
+tr 'a-z' 'A-Z' < file
+
+Lower → upper.
+
+tr 'a-z' 'A-Z' < file.txt
+
+rev < file.txt
+
+Reverse each line.
+
+rev < file.txt
+
+sort file.txt
+
+Sort lines.
+
+sort names.txt
+
+uniq file.txt
+
+Remove adjacent duplicates (usually use with sort).
+
+sort names.txt | uniq
+
+vimdiff file1 file2
+
+Diff in vim.
+
+vimdiff a.txt b.txt
+
+diff file1 file2
+
+Terminal diff.
+
+diff a.txt b.txt
+
+awk '{print $1}' file.txt
+
+Print first column.
+
+awk '{print $1}' access.log
+
+sed 's/cat/bat/g' file
+
+Replace text.
+
+sed 's/ERROR/ERR/g' app.log
+
+B) “Must-have” commands NOT shown in the image (DevOps daily)
+
+These are almost always needed:
+
+man, --help
+man grep
+ls --help
+
+sudo
+sudo apt update
+
+tail -f (live logs)
+tail -f /var/log/syslog
+
+journalctl (systemd logs)
+journalctl -u nginx -f
+
+systemctl (services)
+sudo systemctl status nginx
+sudo systemctl restart nginx
+
+ssh -i key.pem
+ssh -i mykey.pem ubuntu@12.34.56.78
+
+curl -I (headers) / curl -s
+curl -I https://example.com
+
+tar -tf (list archive)
+tar -tf backup.tar

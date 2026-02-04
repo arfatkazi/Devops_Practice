@@ -1,0 +1,33 @@
+1.  Image
+
+Read only template
+
+Built from Dockerfile
+
+Made of layers
+
+Immutable
+
+2. Container
+
+Running instance of image
+
+Has:
+
+process
+
+network
+
+storage
+
+isolated env
+
+3. Volume
+
+Persistent storage
+
+Outside container lifecycle
+
+4. Network
+
+Communication between containers

@@ -1,0 +1,7 @@
+cat > access.log <<'EOF'
+10.0.0.5 GET /home 200 1234
+10.0.0.6 POST /login 401 432
+10.0.0.7 POST /pay 500 111
+10.0.0.8 GET /missing 404 222
+10.0.0.5 POST /pay 503 333
+EOF
